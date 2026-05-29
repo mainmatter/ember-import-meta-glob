@@ -1,0 +1,22 @@
+{
+  "name": "ember-import-meta-glob",
+  "version": "1.0.0",
+  "description": "",
+  "license": "MIT",
+  "author": "",
+  "type": "module",
+  "main": "index.cjs",
+  "files": [
+    "babel-plugin-transform-ember-meta-glob.cjs"
+  ],
+  "scripts": {
+    "test": "vitest tests"
+  },
+  "devDependencies": {
+    "@babel/core": "^7.29.0",
+    "vitest": "^4.1.0"
+  },
+  "dependencies": {
+    "glob": "^13.0.6"
+  }
+}

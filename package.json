@@ -1,0 +1,15 @@
+{
+  "name": "ember-glob-import-demo",
+  "version": "1.0.0",
+  "description": "Demo an ember import.meta.glob babel plugin for Ember",
+  "license": "ISC",
+  "author": "",
+  "type": "commonjs",
+  "main": "index.js",
+  "scripts": {
+    "start:classic": "pnpm --filter 'classic-app' start",
+    "start:webpack": "pnpm --filter 'webpack-app' start",
+    "start:vite": "pnpm --filter 'vite-app' start",
+    "test": "pnpm --filter 'ember-import-meta-glob' test"
+  }
+}

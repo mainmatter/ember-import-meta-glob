@@ -1,0 +1,13 @@
+packages:
+  # The package that ows the Babel plugin to transform import.meta.glob
+  - 'ember-import-meta-glob'
+  # Classic addon making use of import-meta-glob (not implemented, unused placeholder for now)
+  - 'like-mirage'
+  # V2 addon making use of import-meta-glob (not implemented, unused placeholder for now)
+  - 'like-mirage-v2'
+  # Ember app building with Ember CLI and Broccoli
+  - 'test-apps/classic-app'
+  # Ember app building with @embroider/webpack
+  - 'test-apps/webpack-app'
+  # Ember app building with @embroider/vite
+  - 'test-apps/vite-app'
