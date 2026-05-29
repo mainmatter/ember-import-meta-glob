@@ -71,7 +71,6 @@ module.exports = function ({ types: t }) {
       },
       CallExpression(path, state) {
         const { node } = path;
-        debug('Plugin running', state);
 
         if (!isImportMetaGlobExpression(node)) return;
         const isEager = isEagerImportMetaGlobExpression(node);
@@ -101,6 +100,7 @@ module.exports = function ({ types: t }) {
         });
         // Dedupe if necessary
         files = [...new Set(files)];
+        debug('files from glob', files);
 
         isEager
           ? transformEagerImportMetaGlob(path, files)
