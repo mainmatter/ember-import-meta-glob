@@ -19,6 +19,11 @@ module.exports = function ({ types: t }) {
       node.arguments[1].properties[0].value.value
   }
 
+  const isAppEmbroiderWebpack = (filename) => {
+    const embroiderAppPath = 'node_modules/.embroider/rewritten-app';
+    return filename.includes(embroiderAppPath);
+  }
+
   const transformEagerImportMetaGlob = (path, files) => {
     let importDeclarations = [];
     let newObjectProperties = [];
@@ -47,14 +52,15 @@ module.exports = function ({ types: t }) {
     path.replaceWith(t.objectExpression(newObjectProperties));
   }
 
-  const transformLazyImportMetaGlob = (path, files) => {
+  const transformLazyImportMetaGlob = (path, files, useImport) => {
+    const functionIdentifier = useImport ? 'import' : 'require';
     const newObjectProperties = files.map((file) => {
       return t.objectProperty(
         t.stringLiteral(file),
         t.arrowFunctionExpression(
           [],
           t.callExpression(
-            t.identifier('require'),
+            t.identifier(functionIdentifier),
             [t.stringLiteral(file)]
           )
         )
@@ -76,18 +82,22 @@ module.exports = function ({ types: t }) {
         const isEager = isEagerImportMetaGlobExpression(node);
         const glob = node.arguments[0].value;
 
-        // TODO: find cwd
+        // Lazy imports will use require by default.
+        let useImport = false;
+
         let cwd = process.cwd();
         if (state?.cwd && state?.filename) {
-          const [ appPrefix ] = state.cwd.split('/').slice(-1);
-          const regex = new RegExp(`^(?:.*?\\b${appPrefix}\/${appPrefix}\\b){1}`);
-          const embroiderAppPath = 'node_modules/.embroider/rewritten-app';
-          cwd = state.filename.includes(embroiderAppPath)
-            /* In Ember Webpack, the app we need to transform is the rewritten app. */
-            ? dirname(state.filename)
+          if (isAppEmbroiderWebpack(state.filename)) {
+            // In Ember Webpack, the app we need to transform is the rewritten app.
+            cwd = dirname(state.filename)
+            useImport = true;
+          } else {
             /* In Ember Classic, we end up with path-to-app/app-prefix/app-prefix/path-to-file
              * in state filename instead of path-to-app/app-prefix/app/path-to-file */
-            : dirname(join(state.cwd, state.filename.replace(regex, 'app')));
+            const [ appPrefix ] = state.cwd.split('/').slice(-1);
+            const regex = new RegExp(`^(?:.*?\\b${appPrefix}\/${appPrefix}\\b){1}`);
+            cwd = dirname(join(state.cwd, state.filename.replace(regex, 'app')));
+          }
         }
 
         let files = globSync(glob, {
@@ -104,7 +114,7 @@ module.exports = function ({ types: t }) {
 
         isEager
           ? transformEagerImportMetaGlob(path, files)
-          : transformLazyImportMetaGlob(path, files);
+          : transformLazyImportMetaGlob(path, files, useImport);
       },
     },
   };
