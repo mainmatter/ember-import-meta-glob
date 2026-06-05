@@ -10,6 +10,9 @@
     "start:classic": "pnpm --filter 'classic-app' start",
     "start:webpack": "pnpm --filter 'webpack-app' start",
     "start:vite": "pnpm --filter 'vite-app' start",
-    "test": "pnpm --filter 'ember-import-meta-glob' test"
+    "test:classic": "pnpm --filter 'classic-app' test",
+    "test:webpack": "pnpm --filter 'webpack-app' test",
+    "test:vite": "pnpm --filter 'vite-app' test",
+    "test:unit": "pnpm --filter 'ember-import-meta-glob' test"
   }
 }
