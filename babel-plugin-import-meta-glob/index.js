@@ -1,10 +1,12 @@
 // eslint-disable-next-line no-undef
-const { globSync } = require('glob');
-const { dirname, join } = require('path');
-const debug = require('debug')('babel:plugin-meta-glob');
+import { globSync } from 'glob';
+import { dirname, join } from 'path';
+import createDebug from 'debug';
+
+const debug = createDebug('babel:plugin-inport-meta-glob');
 
 // https://astexplorer.net/#/gist/14696755417f9d41c8c2bd72c187b0da/41a903d14d860270fa4eefab69c8ae8934971cdc
-module.exports = function ({ types: t }) {
+export default function ({ types: t }) {
   let program;
 
   const isImportMetaGlobExpression = (node) => {

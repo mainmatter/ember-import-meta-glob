@@ -1,13 +1,13 @@
 {
-  "name": "ember-import-meta-glob",
+  "name": "babel-plugin-import-meta-glob",
   "version": "1.0.0",
   "description": "",
   "license": "MIT",
   "author": "",
   "type": "module",
-  "main": "index.cjs",
+  "main": "index.js",
   "files": [
-    "babel-plugin-transform-ember-meta-glob.cjs"
+    "index.js"
   ],
   "scripts": {
     "test": "vitest tests"
@@ -17,6 +17,7 @@
     "vitest": "^4.1.0"
   },
   "dependencies": {
+    "debug": "^4.4.3",
     "glob": "^13.0.6"
   }
 }

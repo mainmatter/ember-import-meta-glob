@@ -8,8 +8,11 @@ importers:
 
   .: {}
 
-  ember-import-meta-glob:
+  babel-plugin-import-meta-glob:
     dependencies:
+      debug:
+        specifier: ^4.4.3
+        version: 4.4.3(supports-color@8.1.1)
       glob:
         specifier: ^13.0.6
         version: 13.0.6
@@ -307,6 +310,9 @@ importers:
       '@glimmer/tracking':
         specifier: ^1.1.2
         version: 1.1.2
+      babel-plugin-import-meta-glob:
+        specifier: workspace:*
+        version: link:../../babel-plugin-import-meta-glob
       broccoli-asset-rev:
         specifier: ^3.0.0
         version: 3.0.0
@@ -349,9 +355,6 @@ importers:
       ember-data:
         specifier: ~5.6.0
         version: 5.6.0(@babel/core@7.29.0)(@ember/test-helpers@5.4.1(@babel/core@7.29.0))(@ember/test-waiters@4.1.1(@babel/core@7.29.0))(qunit@2.25.0)
-      ember-import-meta-glob:
-        specifier: workspace:*
-        version: link:../../ember-import-meta-glob
       ember-load-initializers:
         specifier: ^3.0.1
         version: 3.0.1(ember-source@6.7.0(@glimmer/component@2.0.0)(rsvp@4.8.5))
@@ -628,6 +631,9 @@ importers:
       '@glimmer/tracking':
         specifier: ^1.1.2
         version: 1.1.2
+      babel-plugin-import-meta-glob:
+        specifier: workspace:*
+        version: link:../../babel-plugin-import-meta-glob
       broccoli-asset-rev:
         specifier: ^3.0.0
         version: 3.0.0
@@ -664,9 +670,6 @@ importers:
       ember-data:
         specifier: ~5.6.0
         version: 5.6.0(@babel/core@7.29.0)(@ember/test-helpers@5.4.1(@babel/core@7.29.0))(@ember/test-waiters@4.1.1(@babel/core@7.29.0))(qunit@2.25.0)
-      ember-import-meta-glob:
-        specifier: workspace:*
-        version: link:../../ember-import-meta-glob
       ember-load-initializers:
         specifier: ^3.0.1
         version: 3.0.1(ember-source@6.7.0(@glimmer/component@2.0.0)(rsvp@4.8.5))

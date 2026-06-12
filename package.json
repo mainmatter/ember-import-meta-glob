@@ -14,5 +14,6 @@
     "test:webpack": "pnpm --filter 'webpack-app' test",
     "test:vite": "pnpm --filter 'vite-app' test",
     "test:unit": "pnpm --filter 'ember-import-meta-glob' test"
-  }
+  },
+  "packageManager": "pnpm@11.6.0+sha512.9a36518224080c6fe5165afdcfe79bfa118c29be703f3f462b1e32efe1e98e47e8750b148e08286250aad4113cc7993ca413c4e2cd447752708c2ee5751bc95f"
 }
