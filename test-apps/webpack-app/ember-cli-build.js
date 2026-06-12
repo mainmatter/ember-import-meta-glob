@@ -6,7 +6,7 @@ module.exports = function (defaults) {
   const app = new EmberApp(defaults, {
     babel: {
       plugins: [
-        require.resolve('ember-import-meta-glob')
+        require.resolve('babel-plugin-import-meta-glob')
       ]
     },
     emberData: {

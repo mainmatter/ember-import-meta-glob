@@ -16,7 +16,7 @@
     "start:vite": "pnpm --filter 'vite-app' start",
     "start:webpack": "pnpm --filter 'webpack-app' start",
     "test:classic": "pnpm --filter 'classic-app' test",
-    "test:unit": "pnpm --filter 'ember-import-meta-glob' test",
+    "test:unit": "pnpm --filter 'babel-plugin-import-meta-glob' test",
     "test:vite": "pnpm --filter 'vite-app' test",
     "test:webpack": "pnpm --filter 'webpack-app' test"
   },
