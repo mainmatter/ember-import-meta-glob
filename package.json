@@ -1,7 +1,7 @@
 {
   "name": "ember-glob-import-demo",
   "private": true,
-  "version": "1.0.0",
+  "version": "0.0.0",
   "description": "Demo an ember import.meta.glob babel plugin for Ember",
   "repository": {
     "type": "git",
