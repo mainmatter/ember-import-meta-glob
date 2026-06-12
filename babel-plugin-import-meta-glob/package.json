@@ -6,6 +6,11 @@
   "author": "",
   "type": "module",
   "main": "index.js",
+  "repository": {
+    "type": "git",
+    "url": "git@github.com:mainmatter/ember-import-meta-glob.git",
+    "directory": "babel-plugin-import-meta-glob"
+  },
   "files": [
     "index.js"
   ],
