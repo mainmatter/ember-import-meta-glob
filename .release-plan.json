@@ -1,0 +1,39 @@
+{
+  "solution": {
+    "babel-plugin-import-meta-glob": {
+      "impact": "minor",
+      "oldVersion": "0.0.0",
+      "newVersion": "0.1.0",
+      "tagName": "latest",
+      "constraints": [
+        {
+          "impact": "minor",
+          "reason": "Appears in changelog section :rocket: Enhancement"
+        },
+        {
+          "impact": "patch",
+          "reason": "Appears in changelog section :house: Internal"
+        }
+      ],
+      "pkgJSONPath": "./babel-plugin-import-meta-glob/package.json"
+    },
+    "ember-import-meta-glob": {
+      "impact": "minor",
+      "oldVersion": "0.0.0",
+      "newVersion": "0.1.0",
+      "tagName": "latest",
+      "constraints": [
+        {
+          "impact": "patch",
+          "reason": "Has dependency `workspace:*` on babel-plugin-import-meta-glob"
+        },
+        {
+          "impact": "minor",
+          "reason": "Appears in changelog section :rocket: Enhancement"
+        }
+      ],
+      "pkgJSONPath": "./ember-import-meta-glob/package.json"
+    }
+  },
+  "description": "## Release (2026-06-12)\n\n* babel-plugin-import-meta-glob 0.1.0 (minor)\n* ember-import-meta-glob 0.1.0 (minor)\n\n#### :rocket: Enhancement\n* `babel-plugin-import-meta-glob`, `ember-import-meta-glob`\n  * [#9](https://github.com/mainmatter/ember-import-meta-glob/pull/9) Create a v1 addon that makes use of the babel plugin ([@BlueCutOfficial](https://github.com/BlueCutOfficial))\n  * [#5](https://github.com/mainmatter/ember-import-meta-glob/pull/5) rename babel plugin and convert to esm ([@mansona](https://github.com/mansona))\n* `ember-import-meta-glob`\n  * [#2](https://github.com/mainmatter/ember-import-meta-glob/pull/2) get a working iteration for lazy import in Embroider Webpack ([@BlueCutOfficial](https://github.com/BlueCutOfficial))\n* Other\n  * [#3](https://github.com/mainmatter/ember-import-meta-glob/pull/3) Acceptance test ([@BlueCutOfficial](https://github.com/BlueCutOfficial))\n\n#### :house: Internal\n* `babel-plugin-import-meta-glob`\n  * [#10](https://github.com/mainmatter/ember-import-meta-glob/pull/10) reset versions and add licence files ([@mansona](https://github.com/mansona))\n* Other\n  * [#7](https://github.com/mainmatter/ember-import-meta-glob/pull/7) add a basic CI ([@mansona](https://github.com/mansona))\n  * [#6](https://github.com/mainmatter/ember-import-meta-glob/pull/6) setup release-plan ([@mansona](https://github.com/mansona))\n\n#### Committers: 2\n- Chris Manson ([@mansona](https://github.com/mansona))\n- Marine Dunstetter ([@BlueCutOfficial](https://github.com/BlueCutOfficial))\n"
+}
