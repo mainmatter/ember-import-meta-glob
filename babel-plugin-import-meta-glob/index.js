@@ -5,7 +5,7 @@ import createDebug from 'debug';
 const debug = createDebug('babel:plugin-inport-meta-glob');
 
 // https://astexplorer.net/#/gist/14696755417f9d41c8c2bd72c187b0da/41a903d14d860270fa4eefab69c8ae8934971cdc
-export default function ({ types: t }) {
+function ImportMetaGlobPlugin ({ types: t }) {
   let program;
 
   const isImportMetaGlobExpression = (node) => {
@@ -120,3 +120,15 @@ export default function ({ types: t }) {
     },
   };
 };
+
+ImportMetaGlobPlugin.cacheKey = function () {
+  return 'babel-plugin-import-meta-glob';
+};
+
+import { fileURLToPath } from 'url';
+const __dirname = dirname(fileURLToPath(import.meta.url));
+ImportMetaGlobPlugin.baseDir = function() {
+  return __dirname;
+};
+
+export default ImportMetaGlobPlugin;

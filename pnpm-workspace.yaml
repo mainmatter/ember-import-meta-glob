@@ -1,6 +1,8 @@
 packages:
   # The package that owns the Babel plugin to transform import.meta.glob
   - 'babel-plugin-import-meta-glob'
+  # The classic addon to make use of babel-plugin-import-meta-glob in non-Vite apps
+  - 'ember-import-meta-glob'
   # Classic addon making use of import-meta-glob (not implemented, unused placeholder for now)
   - 'like-mirage'
   # V2 addon making use of import-meta-glob (not implemented, unused placeholder for now)
