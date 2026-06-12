@@ -2,6 +2,18 @@
 
 ## Release (2026-06-12)
 
+* babel-plugin-import-meta-glob 0.1.1 (patch)
+* ember-import-meta-glob 0.1.1 (patch)
+
+#### :bug: Bug Fix
+* `babel-plugin-import-meta-glob`, `ember-import-meta-glob`
+  * [#11](https://github.com/mainmatter/ember-import-meta-glob/pull/11) fix repository entries to fix deployment ([@mansona](https://github.com/mansona))
+
+#### Committers: 1
+- Chris Manson ([@mansona](https://github.com/mansona))
+
+## Release (2026-06-12)
+
 * babel-plugin-import-meta-glob 0.1.0 (minor)
 * ember-import-meta-glob 0.1.0 (minor)
 
