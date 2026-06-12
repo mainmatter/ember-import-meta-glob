@@ -1,7 +1,7 @@
 import { expect, test } from 'vitest'
 
-let babel = require('@babel/core');
-let BabelPluginMetaGlob = require('../babel-plugin-transform-ember-meta-glob.cjs');
+import babel from '@babel/core';
+import BabelPluginMetaGlob from '../index.js';
 
 test('it transforms import.meta.glob to eager import', () => {
   const statement = `const modules = import.meta.glob('tests/**/*.cjs', { eager: true })`;
