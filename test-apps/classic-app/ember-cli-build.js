@@ -4,11 +4,6 @@ const EmberApp = require('ember-cli/lib/broccoli/ember-app');
 
 module.exports = function (defaults) {
   const app = new EmberApp(defaults, {
-    babel: {
-      plugins: [
-        require.resolve('babel-plugin-import-meta-glob')
-      ]
-    },
     emberData: {
       deprecations: {
         // New projects can safely leave this deprecation disabled.

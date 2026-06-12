@@ -12,6 +12,7 @@
   "type": "commonjs",
   "main": "index.js",
   "scripts": {
+    "start:addon": "pnpm --filter 'ember-import-meta-glob' start",
     "start:classic": "pnpm --filter 'classic-app' start",
     "start:vite": "pnpm --filter 'vite-app' start",
     "start:webpack": "pnpm --filter 'webpack-app' start",
