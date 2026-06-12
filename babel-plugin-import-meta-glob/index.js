@@ -1,4 +1,3 @@
-// eslint-disable-next-line no-undef
 import { globSync } from 'glob';
 import { dirname, join } from 'path';
 import createDebug from 'debug';
