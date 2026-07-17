@@ -10,8 +10,8 @@ test('it transforms import.meta.glob to lazy import', () => {
   });
   expect(output.code).toMatchInlineSnapshot(`
     "const modules = {
-      "tests/fixtures/_fixture-b": () => require("tests/fixtures/_fixture-b"),
-      "tests/fixtures/_fixture-a": () => require("tests/fixtures/_fixture-a")
+      "tests/fixtures/_fixture-b": () => import("tests/fixtures/_fixture-b"),
+      "tests/fixtures/_fixture-a": () => import("tests/fixtures/_fixture-a")
     };"
   `);
 })

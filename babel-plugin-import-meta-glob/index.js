@@ -1,5 +1,5 @@
 import { globSync } from 'glob';
-import { dirname, join } from 'path';
+import { dirname, join, relative, resolve } from 'path';
 import createDebug from 'debug';
 
 const debug = createDebug('babel:plugin-inport-meta-glob');
@@ -29,7 +29,7 @@ function ImportMetaGlobPlugin ({ types: t }) {
     let importDeclarations = [];
     let newObjectProperties = [];
 
-    files.forEach((source, index) => {
+    [...files.entries()].forEach(([file, importedPath], index) => {
       const importName = `emberGlob${index}`;
       importDeclarations.push(
         t.importDeclaration(
@@ -38,12 +38,12 @@ function ImportMetaGlobPlugin ({ types: t }) {
               t.identifier(importName)
             )
           ],
-          t.stringLiteral(source)
+          t.stringLiteral(importedPath)
         )
       )
       newObjectProperties.push(
         t.objectProperty(
-          t.stringLiteral(source),
+          t.stringLiteral(file),
           t.identifier(importName)
         )
       )
@@ -53,16 +53,15 @@ function ImportMetaGlobPlugin ({ types: t }) {
     path.replaceWith(t.objectExpression(newObjectProperties));
   }
 
-  const transformLazyImportMetaGlob = (path, files, useImport) => {
-    const functionIdentifier = useImport ? 'import' : 'require';
-    const newObjectProperties = files.map((file) => {
+  const transformLazyImportMetaGlob = (path, files) => {
+    const newObjectProperties = [...files.entries()].map(([file, importedPath]) => {
       return t.objectProperty(
         t.stringLiteral(file),
         t.arrowFunctionExpression(
           [],
           t.callExpression(
-            t.identifier(functionIdentifier),
-            [t.stringLiteral(file)]
+            t.identifier('import'),
+            [t.stringLiteral(importedPath)]
           )
         )
       );
@@ -83,39 +82,49 @@ function ImportMetaGlobPlugin ({ types: t }) {
         const isEager = isEagerImportMetaGlobExpression(node);
         const glob = node.arguments[0].value;
 
-        // Lazy imports will use require by default.
-        let useImport = false;
-
         let cwd = process.cwd();
+        let classicBuild = false;
+
         if (state?.cwd && state?.filename) {
           if (isAppEmbroiderWebpack(state.filename)) {
             // In Ember Webpack, the app we need to transform is the rewritten app.
             cwd = dirname(state.filename)
-            useImport = true;
           } else {
             /* In Ember Classic, we end up with path-to-app/app-prefix/app-prefix/path-to-file
              * in state filename instead of path-to-app/app-prefix/app/path-to-file */
             const [ appPrefix ] = state.cwd.split('/').slice(-1);
             const regex = new RegExp(`^(?:.*?\\b${appPrefix}\/${appPrefix}\\b){1}`);
             cwd = dirname(join(state.cwd, state.filename.replace(regex, 'app')));
+            classicBuild = { appPrefix, appRoot: join(state.cwd, 'app') };
           }
         }
 
-        let files = globSync(glob, {
+        const files = globSync(glob, {
           ignore: 'node_modules/**',
           cwd,
-        }).map((file) => {
+        }).reduce((files, file) => {
           // Remove extensions from found files
           const extensionRegexp = new RegExp(/.[tjhbcs]s?$/g);
-          return extensionRegexp.test(file) ? file.replace(/\.\w+$/, '') : file
-        });
-        // Dedupe if necessary
-        files = [...new Set(files)];
+          file = extensionRegexp.test(file) ? file.replace(/\.\w+$/, '') : file;
+
+          let importedPath = file;
+
+          if (!isEager && classicBuild) {
+            // Use app prefix path in classic builds for lazy globs
+            const absolute = resolve(cwd, file);
+            const fromRoot = relative(classicBuild.appRoot, absolute);
+            importedPath = join(classicBuild.appPrefix, fromRoot);
+          }
+
+          files.set(file, importedPath);
+          return files;
+        }, new Map())
+
         debug('files from glob', files);
 
         isEager
           ? transformEagerImportMetaGlob(path, files)
-          : transformLazyImportMetaGlob(path, files, useImport);
+          : transformLazyImportMetaGlob(path, files);
       },
     },
   };
