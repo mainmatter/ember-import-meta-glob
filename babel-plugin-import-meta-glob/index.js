@@ -53,17 +53,36 @@ function ImportMetaGlobPlugin ({ types: t }) {
     path.replaceWith(t.objectExpression(newObjectProperties));
   }
 
+  const generateImportCall = (file, useImport) => {
+    if (useImport) {
+      return t.callExpression(
+        t.identifier('import'),
+        [t.stringLiteral(file)]
+      );
+    } else {
+      // Wrap require() call in a promise to match import() return type
+      return t.callExpression(
+        t.memberExpression(
+          t.identifier('Promise'),
+          t.identifier('resolve')
+        ),
+        [
+          t.callExpression(
+            t.identifier('require'),
+            [t.stringLiteral(file)]
+          )
+        ]
+      );
+    }
+  }
+
   const transformLazyImportMetaGlob = (path, files, useImport) => {
-    const functionIdentifier = useImport ? 'import' : 'require';
     const newObjectProperties = files.map((file) => {
       return t.objectProperty(
         t.stringLiteral(file),
         t.arrowFunctionExpression(
           [],
-          t.callExpression(
-            t.identifier(functionIdentifier),
-            [t.stringLiteral(file)]
-          )
+          generateImportCall(file, useImport)
         )
       );
     });
