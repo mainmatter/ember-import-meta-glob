@@ -4,6 +4,11 @@ const EmberApp = require('ember-cli/lib/broccoli/ember-app');
 
 module.exports = function (defaults) {
   const app = new EmberApp(defaults, {
+    autoImport: {
+      allowAppImports: [
+        'mirage/lazy-fixtures/*'
+      ]
+    },
     babel: {
       plugins: [require.resolve('ember-auto-import/babel-plugin')]
     },
