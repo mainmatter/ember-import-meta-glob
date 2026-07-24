@@ -1,5 +1,17 @@
 # Changelog
 
+## Release (2026-07-20)
+
+* babel-plugin-import-meta-glob 0.1.2 (patch)
+* ember-import-meta-glob 0.1.3 (patch)
+
+#### :bug: Bug Fix
+* `babel-plugin-import-meta-glob`
+  * [#15](https://github.com/mainmatter/ember-import-meta-glob/pull/15) fix: wrap generated require() calls in a promise ([@njoyard](https://github.com/njoyard))
+
+#### Committers: 1
+- Nicolas Joyard ([@njoyard](https://github.com/njoyard))
+
 ## Release (2026-06-12)
 
 * ember-import-meta-glob 0.1.2 (patch)
