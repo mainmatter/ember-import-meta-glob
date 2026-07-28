@@ -2,8 +2,8 @@
   "solution": {
     "babel-plugin-import-meta-glob": {
       "impact": "patch",
-      "oldVersion": "0.1.1",
-      "newVersion": "0.1.2",
+      "oldVersion": "0.1.2",
+      "newVersion": "0.1.3",
       "tagName": "latest",
       "constraints": [
         {
@@ -15,8 +15,8 @@
     },
     "ember-import-meta-glob": {
       "impact": "patch",
-      "oldVersion": "0.1.2",
-      "newVersion": "0.1.3",
+      "oldVersion": "0.1.3",
+      "newVersion": "0.1.4",
       "tagName": "latest",
       "constraints": [
         {
@@ -27,5 +27,5 @@
       "pkgJSONPath": "./ember-import-meta-glob/package.json"
     }
   },
-  "description": "## Release (2026-07-20)\n\n* babel-plugin-import-meta-glob 0.1.2 (patch)\n* ember-import-meta-glob 0.1.3 (patch)\n\n#### :bug: Bug Fix\n* `babel-plugin-import-meta-glob`\n  * [#15](https://github.com/mainmatter/ember-import-meta-glob/pull/15) fix: wrap generated require() calls in a promise ([@njoyard](https://github.com/njoyard))\n\n#### Committers: 1\n- Nicolas Joyard ([@njoyard](https://github.com/njoyard))\n"
+  "description": "## Release (2026-07-28)\n\n* babel-plugin-import-meta-glob 0.1.3 (patch)\n* ember-import-meta-glob 0.1.4 (patch)\n\n#### :bug: Bug Fix\n* `babel-plugin-import-meta-glob`\n  * [#18](https://github.com/mainmatter/ember-import-meta-glob/pull/18) fix: classic paths rewrites with multiple /appname/ segments ([@njoyard](https://github.com/njoyard))\n\n#### Committers: 1\n- Nicolas Joyard ([@njoyard](https://github.com/njoyard))\n"
 }
