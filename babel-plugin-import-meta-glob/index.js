@@ -1,8 +1,14 @@
 import { globSync } from 'glob';
-import { dirname, join } from 'path';
+import { dirname, join, relative } from 'path';
 import createDebug from 'debug';
 
 const debug = createDebug('babel:plugin-inport-meta-glob');
+
+export function rewriteClassicPath(cwd, filename) {
+  const relativeFile = relative(cwd, filename);
+  const appFile = relativeFile.replace(/^[^/]+/, 'app');
+  return join(cwd, appFile);
+}
 
 // https://astexplorer.net/#/gist/14696755417f9d41c8c2bd72c187b0da/41a903d14d860270fa4eefab69c8ae8934971cdc
 function ImportMetaGlobPlugin ({ types: t }) {
@@ -114,9 +120,7 @@ function ImportMetaGlobPlugin ({ types: t }) {
           } else {
             /* In Ember Classic, we end up with path-to-app/app-prefix/app-prefix/path-to-file
              * in state filename instead of path-to-app/app-prefix/app/path-to-file */
-            const [ appPrefix ] = state.cwd.split('/').slice(-1);
-            const regex = new RegExp(`^(?:.*?\\b${appPrefix}\/${appPrefix}\\b){1}`);
-            cwd = dirname(join(state.cwd, state.filename.replace(regex, 'app')));
+            cwd = dirname(rewriteClassicPath(state.cwd, state.filename));
           }
         }
 
